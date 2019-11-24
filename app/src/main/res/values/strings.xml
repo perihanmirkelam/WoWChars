@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WoWChars</string>
+    <string name="title_search">Search</string>
+    <string name="title_filter">Filter</string>
+</resources>
