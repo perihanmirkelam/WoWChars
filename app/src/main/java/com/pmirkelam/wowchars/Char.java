@@ -1,7 +1,15 @@
 package com.pmirkelam.wowchars;
 
-import androidx.annotation.NonNull;
+import android.text.Html;
+import android.text.Spanned;
+import android.util.Log;
+import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -62,6 +70,25 @@ public class Char {
     @SerializedName("flavor")
     private String flavor;
 
+    @BindingAdapter({"imageUrl"})
+    public static void loadImage(ImageView imageView, String url){
+        Glide.with(imageView.getContext())
+                .load(url)
+                .apply(
+                        new RequestOptions()
+                                .error(R.drawable.no_img)
+                                .placeholder(R.drawable.loading_img)
+                                .fitCenter())
+                .into(imageView);
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     @NonNull
     public String getCardId() {
@@ -129,14 +156,6 @@ public class Char {
         this.attack = attack;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
     public String getImgGold() {
         return imgGold;
     }
@@ -152,8 +171,14 @@ public class Char {
         this.cost = cost;
     }
 
-    public String getText() {
-        return text;
+    public Spanned getText() {
+        if(text != null) {
+            text = text.replace("\\n","<br />");
+            return Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT);
+
+        } else {
+            return null;
+        }
     }
 
     public void setText(String text) {

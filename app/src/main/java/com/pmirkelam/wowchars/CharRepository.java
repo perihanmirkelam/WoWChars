@@ -22,7 +22,7 @@ public class CharRepository {
     public CharRepository() {
     }
 
-    public MutableLiveData<List<Char>> getSearchedCharsMutableLiveData() {
+    public MutableLiveData<List<Char>> getSearchedCharsMutableLiveData(String name) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -31,7 +31,7 @@ public class CharRepository {
 
         CharService service = retrofit.create(CharService.class);
 
-        Call<List<Char>> call = service.searchCharByName("Saron");
+        Call<List<Char>> call = service.searchCharByName(name);
 
         call.enqueue(new Callback<List<Char>>() {
             @Override

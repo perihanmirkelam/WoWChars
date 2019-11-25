@@ -1,11 +1,9 @@
 package com.pmirkelam.wowchars.ui.search;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -31,11 +29,9 @@ public class SearchFragment extends Fragment {
     private RecyclerView recyclerViewSearch;
     private CharAdapter charAdapter;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
-
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false);
         View view = binding.getRoot();
@@ -49,6 +45,7 @@ public class SearchFragment extends Fragment {
         charAdapter = new CharAdapter();
         recyclerViewSearch.setAdapter(charAdapter);
         recyclerViewSearch.setItemAnimator(new DefaultItemAnimator());
+
         return view;
     }
 
@@ -62,5 +59,12 @@ public class SearchFragment extends Fragment {
                 charAdapter.notifyDataSetChanged();
             }
         });
+//        searchViewModel.getSearchText().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(String s) {
+//
+//            }
+//        });
+
     }
 }

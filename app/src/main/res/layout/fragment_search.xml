@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -13,39 +12,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <Toolbar-->
-<!--            android:id="@+id/search"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/recycler_view_search"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:theme="@style/ToolbarStyle">-->
-<!--            <SearchView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
-<!--        </Toolbar>-->
-
-<!--        <SearchView-->
-<!--            android:id="@+id/search"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/recycler_view_search"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <SearchView
+        <Toolbar
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
             app:layout_constraintBottom_toTopOf="@+id/recycler_view_search"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:inputType="text"
+                android:textColor="@android:color/black"
+                android:onTextChanged="@{SearchViewModel.onTextChanged}"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="@string/search_cards" />
+        </Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_search"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:clickable="false"
+            android:clickable="true"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/nav_view"
             app:layout_constraintTop_toBottomOf="@+id/search" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
