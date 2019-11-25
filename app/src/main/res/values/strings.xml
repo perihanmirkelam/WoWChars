@@ -2,4 +2,17 @@
     <string name="app_name">WoWChars</string>
     <string name="title_search">Search</string>
     <string name="title_filter">Filter</string>
+    <string name="example_name">Gnomeferatu</string>
+    <string name="example_text">Battlecry: Remove the top card of your opponents deck.</string>
+    <string-array name="classes">
+        <item>Druid</item>
+        <item>Hunter</item>
+        <item>Mage</item>
+        <item>Paladin</item>
+        <item>Priest</item>
+        <item>Rogue</item>
+        <item>Shaman</item>
+        <item>Warlock</item>
+        <item>Warrior</item>
+    </string-array>
 </resources>

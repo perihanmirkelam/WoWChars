@@ -25,11 +25,6 @@ public interface CharService {
             "x-rapidapi-host:omgvamp-hearthstone-v1.p.rapidapi.com",
             "x-rapidapi-key:ee01bea652msh4f5fa619e7afc24p1e0ec0jsn3d9fc66a7d8a"
             })
-    @GET("/search/{name}")
+    @GET("search/{name}")
     Call<List<Char>> searchCharByName(@Path("name") String name);
 }
-
-//req.headers({
-//	"x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com",
-//	"x-rapidapi-key": "ee01bea652msh4f5fa619e7afc24p1e0ec0jsn3d9fc66a7d8a"
-//});

@@ -19,7 +19,6 @@ public class SearchViewModel extends ViewModel {
     public SearchViewModel() {
         charRepository = new CharRepository();
         charMutableLiveData = charRepository.getSearchedCharsMutableLiveData();
-       // charRepository.getInceptorSearchedCharsMutableLiveData();
 
         mText = new MutableLiveData<>();
         mText.setValue("This is search fragment");

@@ -23,11 +23,11 @@ public class FilterFragment extends Fragment {
         filterViewModel =
                 ViewModelProviders.of(this).get(FilterViewModel.class);
         View root = inflater.inflate(R.layout.fragment_filter, container, false);
-        final TextView textView = root.findViewById(R.id.text_filter);
+       // final TextView textView = root.findViewById(R.id.text_filter);
         filterViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+           //     textView.setText(s);
             }
         });
         return root;

@@ -7,5 +7,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="CharCardViewStyle" parent="CardView">
+        <item name="android:textColor">#bebebe</item>
+        <item name="cardElevation">@dimen/items_margin</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+    </style>
+    <style name="ToolbarStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionMenuTextColor">@color/colorPrimaryDark</item>
+    </style>
+
 
 </resources>
