@@ -1,5 +1,6 @@
 package com.pmirkelam.wowchars;
 
+import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -163,8 +164,8 @@ public class Char {
     public void setImgGold(String imgGold) {
         this.imgGold = imgGold;
     }
-    public long getCost() {
-        return cost;
+    public String getCost() {
+        return String.valueOf(cost);
     }
 
     public void setCost(long cost) {

@@ -4,7 +4,10 @@
     <string name="title_filter">Filter</string>
     <string name="example_name">Gnomeferatu</string>
     <string name="example_text">Battlecry: Remove the top card of your opponents deck.</string>
+    <string name="example_detail">Rarity: Epic</string>
     <string name="search_cards">Search Cards</string>
+    <string name="description">Description</string>
+    <string name="flavor">Flavor</string>
     <string-array name="classes">
         <item>Druid</item>
         <item>Hunter</item>

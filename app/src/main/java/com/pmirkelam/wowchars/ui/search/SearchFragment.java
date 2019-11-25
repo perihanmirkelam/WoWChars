@@ -1,6 +1,8 @@
 package com.pmirkelam.wowchars.ui.search;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,8 @@ import com.pmirkelam.wowchars.Char;
 import com.pmirkelam.wowchars.CharAdapter;
 import com.pmirkelam.wowchars.R;
 import com.pmirkelam.wowchars.databinding.FragmentSearchBinding;
+import com.pmirkelam.wowchars.ui.detail.DetailActivity;
+import com.pmirkelam.wowchars.ui.detail.DetailViewModel;
 
 import java.util.List;
 
@@ -59,12 +63,15 @@ public class SearchFragment extends Fragment {
                 charAdapter.notifyDataSetChanged();
             }
         });
-//        searchViewModel.getSearchText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(String s) {
-//
-//            }
-//        });
+        charAdapter.getSelectedCharName().observe(this, new Observer<Char>() {
+            @Override
+            public void onChanged(Char wChar) {
+                Log.i("TAG", "HUMFF observe name: " + wChar.getName());
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                DetailViewModel.getInstance().setChar(wChar);
+                startActivity(intent);
+            }
+        });
 
     }
 }
