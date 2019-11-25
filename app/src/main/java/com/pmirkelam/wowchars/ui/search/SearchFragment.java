@@ -1,6 +1,7 @@
 package com.pmirkelam.wowchars.ui.search;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.pmirkelam.wowchars.Char;
 import com.pmirkelam.wowchars.R;
+
+import java.util.List;
 
 public class SearchFragment extends Fragment {
 
@@ -28,6 +32,13 @@ public class SearchFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
+            }
+        });
+
+        searchViewModel.searchChar().observe(this, new Observer<List<Char>>() {
+            @Override
+            public void onChanged(List<Char> chars) {
+                Log.i("SearchFragment","HUMFFF SearchFragment searchChar().observe");
             }
         });
         return root;
