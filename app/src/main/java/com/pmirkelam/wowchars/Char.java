@@ -141,16 +141,16 @@ public class Char {
         this.rarity = rarity;
     }
 
-    public int getHealth() {
-        return health;
+    public String getHealth() {
+        return String.valueOf(health);
     }
 
     public void setHealth(int health) {
         this.health = health;
     }
 
-    public int getAttack() {
-        return attack;
+    public String getAttack() {
+        return String.valueOf(attack);
     }
 
     public void setAttack(int attack) {
@@ -192,6 +192,13 @@ public class Char {
 
     public void setFlavor(String flavor) {
         this.flavor = flavor;
+    }
+
+    @Override
+    public String toString(){
+        return "\nID:" + cardId + "\nName: " + name + "\nPlayer Class: " + playerClass + "\nType: " + type
+                + "\nFaction: " + faction + "\nRarity: " + rarity + "\nHealth: " + health + "\nAttack: "
+                + attack + "\nCost: " + cost + "\nText: " + text + "\nFlavor: " + flavor;
     }
 
 }

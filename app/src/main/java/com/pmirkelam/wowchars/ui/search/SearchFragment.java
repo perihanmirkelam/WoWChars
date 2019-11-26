@@ -2,7 +2,6 @@ package com.pmirkelam.wowchars.ui.search;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import com.pmirkelam.wowchars.CharAdapter;
 import com.pmirkelam.wowchars.R;
 import com.pmirkelam.wowchars.databinding.FragmentSearchBinding;
 import com.pmirkelam.wowchars.ui.detail.DetailActivity;
-import com.pmirkelam.wowchars.ui.detail.DetailViewModel;
 
 import java.util.List;
 
@@ -56,7 +54,7 @@ public class SearchFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        searchViewModel.searchChar().observe(this, new Observer<List<Char>>() {
+        searchViewModel.searchChars().observe(this, new Observer<List<Char>>() {
             @Override
             public void onChanged(List<Char> chars) {
                 charAdapter.setCharList(chars);
@@ -66,12 +64,12 @@ public class SearchFragment extends Fragment {
         charAdapter.getSelectedCharName().observe(this, new Observer<Char>() {
             @Override
             public void onChanged(Char wChar) {
-                Log.i("TAG", "HUMFF observe name: " + wChar.getName());
+                searchViewModel.setSelectedChar(wChar);
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
-                DetailViewModel.getInstance().setChar(wChar);
                 startActivity(intent);
             }
         });
+        //TODO: be sure that not calling back wrong activity
 
     }
 }

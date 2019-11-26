@@ -11,17 +11,19 @@ import com.pmirkelam.wowchars.CharRepository;
 
 import java.util.List;
 
+import static com.pmirkelam.wowchars.Constants.DEFAULT_NAME_TO_SEARCH;
+
 public class SearchViewModel extends ViewModel {
 
     private MutableLiveData<List<Char>> charMutableLiveData;
     private CharRepository charRepository;
 
     public SearchViewModel() {
-        charRepository = new CharRepository();
-        charMutableLiveData = charRepository.getSearchedCharsMutableLiveData("Saron");
+        charRepository = CharRepository.getInstance();
+        charMutableLiveData = charRepository.getSearchedCharsMutableLiveData(DEFAULT_NAME_TO_SEARCH);
     }
 
-    public LiveData<List<Char>> searchChar() {
+    public LiveData<List<Char>> searchChars() {
         return charMutableLiveData;
     }
 
@@ -31,5 +33,8 @@ public class SearchViewModel extends ViewModel {
         }
     }
 
+    public void setSelectedChar(Char selectedChar){
+        charRepository.setSelectedCharMutableLiveData(selectedChar);
+    }
 
 }

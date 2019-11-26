@@ -2,13 +2,12 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="wChar"
-            type="com.pmirkelam.wowchars.Char" />
+            name="DetailViewModel"
+            type="com.pmirkelam.wowchars.ui.detail.DetailViewModel" />
     </data>
 
     <LinearLayout
@@ -20,16 +19,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/layout_padding"
-            android:weightSum="4"
+            android:weightSum="5"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                bind:imageUrl="@{wChar.img}"
+                bind:imageUrl="@{DetailViewModel.selectedChar.img}"
                 tools:src="@drawable/no_img"
-                android:layout_weight="1"/>
+                android:layout_weight="2"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -38,84 +37,84 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/layout_padding"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/player_class"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="@{wChar.playerClass}"
-                    tools:text="@string/example_detail"/>
-                <TextView
-                    android:id="@+id/rarity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{wChar.rarity}"
-                    tools:text="@string/example_detail"/>
-                <TextView
-                    android:id="@+id/type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="@{wChar.type}"
-                    tools:text="@string/example_detail"/>
-                <TextView
-                    android:id="@+id/cost"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{wChar.cost}"
-                    tools:text="@string/example_detail"/>
+                <include
+                    android:id="@+id/player_class_pr"
+                    layout="@layout/item_char_property"
+                    bind:key="@{@string/player_class}"
+                    bind:value="@{DetailViewModel.selectedChar.playerClass}"/>
+                <include
+                    android:id="@+id/rarity_p"
+                    layout="@layout/item_char_property"
+                    bind:key="@{@string/rarity}"
+                    bind:value="@{DetailViewModel.selectedChar.rarity}"/>
+
+                <include
+                    android:id="@+id/type_p"
+                    layout="@layout/item_char_property"
+                    bind:key="@{@string/type}"
+                    bind:value="@{DetailViewModel.selectedChar.type}"/>
+
+                <include
+                    android:id="@+id/cost_p"
+                    layout="@layout/item_char_property"
+                    bind:key="@{@string/cost}"
+                    bind:value="@{DetailViewModel.selectedChar.cost}"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="@dimen/layout_padding"
+                    android:weightSum="2">
                     <TextView
                         android:id="@+id/attack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="@{wChar.attack}"
-                        tools:text="@string/example_detail"/>
+                        android:layout_weight="1"
+                        android:text="@{@string/generic_prop(DetailViewModel.selectedChar.attack, @string/attack)}"
+                        tools:text="@string/attack"/>
+
                     <TextView
                         android:id="@+id/health"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{wChar.health}"
-                        tools:text="@string/example_detail"/>
+                        android:layout_weight="1"
+                        android:text="@{@string/generic_prop(DetailViewModel.selectedChar.health, @string/health)}"
+                        tools:text="@string/health"/>
                 </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:background="@color/colorPrimary"
-            android:layout_height="1dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/items_margin"
+            android:padding="@dimen/layout_padding"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:text="@string/description"
                 tools:text="@string/description"/>
             <TextView
                 android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{wChar.text}"
+                android:text="@{DetailViewModel.selectedChar.text}"
                 tools:text="@string/example_text"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:text="@string/flavor"
                 tools:text="@string/flavor"/>
             <TextView
                 android:id="@+id/flavor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{wChar.flavor}"
+                android:text="@{DetailViewModel.selectedChar.flavor}"
                 tools:text="@string/example_text"/>
 
         </LinearLayout>

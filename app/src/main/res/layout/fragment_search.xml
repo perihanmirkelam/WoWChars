@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -26,7 +27,7 @@
                 android:focusable="true"
                 android:inputType="text"
                 android:textColor="@android:color/black"
-                android:onTextChanged="@{SearchViewModel.onTextChanged}"
+                android:onTextChanged="@{SearchViewModel::onTextChanged}"
                 android:drawableStart="@drawable/ic_search"
                 android:hint="@string/search_cards" />
         </Toolbar>

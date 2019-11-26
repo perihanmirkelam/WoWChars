@@ -68,7 +68,7 @@ public class CharAdapter extends RecyclerView.Adapter<CharAdapter.CharViewHolder
                     @Override
                     public void onClick(View v) {
                         Char wChar = itemCharBinding.getWChar();
-                        Log.i("HHUMF", "HUMF name: " + wChar.getName());
+                        Log.i("CharAdapter", "Selected char: " + wChar.toString());
                         selectedCharName.setValue(wChar);
                     }
                 });

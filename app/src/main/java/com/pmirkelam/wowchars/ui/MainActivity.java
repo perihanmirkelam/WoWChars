@@ -1,8 +1,9 @@
-package com.pmirkelam.wowchars;
+package com.pmirkelam.wowchars.ui;
 
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.pmirkelam.wowchars.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
