@@ -13,12 +13,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/items_margin"
         android:orientation="vertical">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:title="@{DetailViewModel.selectedChar.getName}"
+            android:titleTextColor="@android:color/white"
+            tools:title="@string/example_name"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/layout_padding"
+            android:layout_margin="@dimen/items_margin"
             android:weightSum="5"
             android:orientation="horizontal">
 
@@ -88,7 +98,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/items_margin"
+            android:layout_margin="@dimen/items_margin_big"
             android:padding="@dimen/layout_padding"
             android:orientation="vertical">
 

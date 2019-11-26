@@ -5,6 +5,7 @@
     <dimen name="item_margin">5dp</dimen>
     <dimen name="layout_padding">5dp</dimen>
     <dimen name="items_margin">5dp</dimen>
+    <dimen name="items_margin_big">15dp</dimen>
     <dimen name="card_corner_radius">1dp</dimen>
     <dimen name="char_item_weight_sum">1dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
