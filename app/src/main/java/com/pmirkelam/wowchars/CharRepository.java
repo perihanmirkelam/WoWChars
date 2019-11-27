@@ -100,10 +100,38 @@ public class CharRepository {
             }
         });
     }
-
 //    public void setSelectedCharMutableLiveData(final Char targetChar){
 //        selectedCharMutableLiveData.setValue(targetChar);
 //    }
+public MutableLiveData<List<Char>> getFilteredCharsMutableLiveData(String name) {
 
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    CharService service = retrofit.create(CharService.class);
+    Call<List<Char>> call = service.getFilteredCharsByClass(name);
+
+    call.enqueue(new Callback<List<Char>>() {
+        @Override
+        public void onResponse(Call<List<Char>> call, Response<List<Char>> response) {
+            if (response.body() != null) {
+                for (Char wChar : response.body()) {
+                    Log.i(TAG, "CHAR: " + wChar.getName());
+                }
+            } else {
+                Log.e(TAG, "Response is null");
+            }
+            List<Char> chars = response.body();
+            charListMutableLiveData.setValue(chars);
+        }
+
+        @Override
+        public void onFailure(Call<List<Char>> call, Throwable t) {
+            Log.e(TAG, (t.getMessage() != null ? t.getMessage() : " onFailure"));
+        }
+    });
+    return charListMutableLiveData;
+}
 }
 

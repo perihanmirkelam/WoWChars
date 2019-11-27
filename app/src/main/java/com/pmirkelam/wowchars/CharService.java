@@ -34,4 +34,11 @@ public interface CharService {
     })
     @GET("{name}")
     Call<List<Char>> getSelectedCharsByName(@Path("name") String name);
+
+    @Headers({
+            "x-rapidapi-host:omgvamp-hearthstone-v1.p.rapidapi.com",
+            "x-rapidapi-key:ee01bea652msh4f5fa619e7afc24p1e0ec0jsn3d9fc66a7d8a"
+    })
+    @GET("classes/{class}")
+    Call<List<Char>> getFilteredCharsByClass(@Path("class") String className);
 }
