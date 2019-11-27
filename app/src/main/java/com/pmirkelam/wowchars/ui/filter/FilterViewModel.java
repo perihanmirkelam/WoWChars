@@ -1,5 +1,6 @@
 package com.pmirkelam.wowchars.ui.filter;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,38 +13,31 @@ import androidx.lifecycle.ViewModel;
 
 import com.pmirkelam.wowchars.Char;
 import com.pmirkelam.wowchars.CharRepository;
+import com.pmirkelam.wowchars.R;
 
 import java.util.List;
 
-import static com.pmirkelam.wowchars.Constants.DEFAULT_NAME_TO_SEARCH;
-
 public class FilterViewModel extends ViewModel {
 
-    private MutableLiveData<List<Char>> charMutableLiveData;
-    private MutableLiveData<Integer> classIndex;
-    private CharRepository charRepository;
+    private static MutableLiveData<List<Char>> charsMutableLiveData;
+    private static CharRepository charRepository;
 
     public FilterViewModel() {
         charRepository = CharRepository.getInstance();
-        charMutableLiveData = charRepository.getFilteredCharsMutableLiveData(DEFAULT_NAME_TO_SEARCH);
-        classIndex = new MutableLiveData<>();
+        charsMutableLiveData = charRepository.getFilteredCharsMutableLiveData("Druid");
     }
 
     public LiveData<List<Char>> filteredChars() {
-        return charMutableLiveData;
-    }
-
-    public MutableLiveData<Integer> getClassIndex() {
-        return classIndex;
+        return charsMutableLiveData;
     }
 
     @BindingAdapter("onItemSelect")
-    public void onItemSelected(Spinner spinner, int i){
+    public static void onItemSelected(final Spinner spinner, int i){
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("FilterViewModel", "onItemSelected : " + id);
-                classIndex.setValue((int) id);
+                Log.i("FilterViewModel", "Spinner onItemSelected : " + spinner.getSelectedItem().toString());
+                charsMutableLiveData = charRepository.getFilteredCharsMutableLiveData(spinner.getSelectedItem().toString());
             }
 
             @Override
@@ -51,9 +45,7 @@ public class FilterViewModel extends ViewModel {
                 Log.i("FilterViewModel", "onNothingSelected : ");
             }
         });
-
     }
-            //
 
     public void setSelectedChar(Char selectedChar){
         charRepository.setSelectedCharMutableLiveData(selectedChar);

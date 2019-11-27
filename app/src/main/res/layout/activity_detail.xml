@@ -25,6 +25,7 @@
             android:title="@{DetailViewModel.selectedChar.getName}"
             app:onNavigationBackClick="@{1}"
             android:popupTheme="@style/AppTheme.PopupOverlay"
+            android:titleTextColor="@android:color/white"
             tools:title="@string/example_name"/>
 
         <LinearLayout

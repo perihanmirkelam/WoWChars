@@ -69,7 +69,5 @@ public class SearchFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        //TODO: be sure that not calling back wrong activity
-
     }
 }

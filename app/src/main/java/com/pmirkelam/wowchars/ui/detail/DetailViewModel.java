@@ -23,10 +23,6 @@ public class DetailViewModel extends ViewModel {
        selectedChar = charRepository.getSelectedCharMutableLiveData();
     }
 
-    public void onCloseDetailScreen(){
-        isCloseDetailScreen.setValue(true);
-    }
-
     public MutableLiveData<Boolean> isClosed(){
         return isCloseDetailScreen;
     }
