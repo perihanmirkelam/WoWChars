@@ -1,6 +1,5 @@
 package com.pmirkelam.wowchars.ui.filter;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,22 +12,21 @@ import androidx.lifecycle.ViewModel;
 
 import com.pmirkelam.wowchars.Char;
 import com.pmirkelam.wowchars.CharRepository;
-import com.pmirkelam.wowchars.R;
 
 import java.util.List;
 
 public class FilterViewModel extends ViewModel {
 
-    private static MutableLiveData<List<Char>> charsMutableLiveData;
+    private static MutableLiveData<List<Char>> charListMutableLiveData;
     private static CharRepository charRepository;
 
     public FilterViewModel() {
         charRepository = CharRepository.getInstance();
-        charsMutableLiveData = charRepository.getFilteredCharsMutableLiveData("Druid");
+        charListMutableLiveData = charRepository.getCharList();
     }
 
     public LiveData<List<Char>> filteredChars() {
-        return charsMutableLiveData;
+        return charListMutableLiveData;
     }
 
     @BindingAdapter("onItemSelect")
@@ -36,13 +34,10 @@ public class FilterViewModel extends ViewModel {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("FilterViewModel", "Spinner onItemSelected : " + spinner.getSelectedItem().toString());
-                charsMutableLiveData = charRepository.getFilteredCharsMutableLiveData(spinner.getSelectedItem().toString());
+                charRepository.searchCharsByClass(spinner.getSelectedItem().toString());
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Log.i("FilterViewModel", "onNothingSelected : ");
             }
         });
     }

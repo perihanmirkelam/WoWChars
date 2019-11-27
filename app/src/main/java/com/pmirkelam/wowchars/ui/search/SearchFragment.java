@@ -54,7 +54,7 @@ public class SearchFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        searchViewModel.searchChars().observe(this, new Observer<List<Char>>() {
+        searchViewModel.getSearchedChars().observe(this, new Observer<List<Char>>() {
             @Override
             public void onChanged(List<Char> chars) {
                 charAdapter.setCharList(chars);

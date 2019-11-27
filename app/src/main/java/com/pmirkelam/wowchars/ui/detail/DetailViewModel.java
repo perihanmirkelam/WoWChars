@@ -1,6 +1,5 @@
 package com.pmirkelam.wowchars.ui.detail;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Toolbar;
 
@@ -20,7 +19,7 @@ public class DetailViewModel extends ViewModel {
     public DetailViewModel(){
        isCloseDetailScreen= new MutableLiveData<>(false);
        charRepository = CharRepository.getInstance();
-       selectedChar = charRepository.getSelectedCharMutableLiveData();
+       selectedChar = charRepository.getChar();
     }
 
     public MutableLiveData<Boolean> isClosed(){
@@ -36,7 +35,6 @@ public class DetailViewModel extends ViewModel {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("DetailViewModel", "DetailViewModel onClick");
                 isCloseDetailScreen.setValue(true);
             }
         });

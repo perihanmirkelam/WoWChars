@@ -17,20 +17,16 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:padding="@dimen/layout_padding"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_constraintBottom_toTopOf="@+id/recycler_view_search"
             app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-            <EditText
+            <SearchView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:inputType="text"
-                android:textColor="@android:color/black"
-                android:onTextChanged="@{SearchViewModel::onTextChanged}"
-                android:drawableStart="@drawable/ic_search"
-                android:hint="@string/search_cards"/>
+                android:layout_height="match_parent"
+                android:queryHint="@string/search_cards"
+                app:onTextChanged="@{1}"/>
         </Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView

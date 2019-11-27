@@ -18,20 +18,28 @@ public class CharRepository {
 
     public static final String TAG = CharRepository.class.getSimpleName();
     private static CharRepository INSTANCE;
-    private MutableLiveData<List<Char>> charListMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<Char> selectedCharMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<Char>> currentListMutableLiveData = new MutableLiveData<>();
 
-    private CharRepository(){
+    private CharRepository() {
     }
 
     public static CharRepository getInstance() {
-        if(INSTANCE == null){
+        if (INSTANCE == null) {
             INSTANCE = new CharRepository();
         }
         return INSTANCE;
     }
 
-    public MutableLiveData<List<Char>> getSearchedCharsMutableLiveData(String name) {
+    public MutableLiveData<List<Char>> getCharList() {
+        return currentListMutableLiveData;
+    }
+
+    public MutableLiveData<Char> getChar() {
+        return selectedCharMutableLiveData;
+    }
+
+    public void searchCharByName(String name) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -47,11 +55,12 @@ public class CharRepository {
                     for (Char wChar : response.body()) {
                         Log.i(TAG, "CHAR: " + wChar.getName());
                     }
+                    currentListMutableLiveData.setValue(response.body());
                 } else {
                     Log.e(TAG, "Response is null");
+                    currentListMutableLiveData.setValue(null);
                 }
-                List<Char> chars = response.body();
-                charListMutableLiveData.setValue(chars);
+
             }
 
             @Override
@@ -59,13 +68,42 @@ public class CharRepository {
                 Log.e(TAG, (t.getMessage() != null ? t.getMessage() : " onFailure"));
             }
         });
-        return charListMutableLiveData;
     }
 
-    public MutableLiveData<Char> getSelectedCharMutableLiveData() {
-        return selectedCharMutableLiveData;
+    public void searchCharsByClass(String playerClass) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        CharService service = retrofit.create(CharService.class);
+        Call<List<Char>> call = service.getFilteredCharsByClass(playerClass);
+
+        call.enqueue(new Callback<List<Char>>() {
+            @Override
+            public void onResponse(Call<List<Char>> call, Response<List<Char>> response) {
+                if (response.body() != null) {
+                    for (Char wChar : response.body()) {
+                        Log.i(TAG, "CHAR: " + wChar.getName());
+                        currentListMutableLiveData.setValue(response.body());
+                    }
+                } else {
+                    Log.e(TAG, "Response of searchCharsByClass is null");
+                    currentListMutableLiveData.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Char>> call, Throwable t) {
+                Log.e(TAG, (t.getMessage() != null ? t.getMessage() : " onFailure"));
+                currentListMutableLiveData.setValue(null);
+            }
+        });
     }
 
+    /**
+     * No needed this method actually, but asked to use the Detail API Call
+     * @param targetChar already has char detail info.
+     */
     public void setSelectedCharMutableLiveData(final Char targetChar) {
 
         String name = targetChar.getCardId();
@@ -82,14 +120,12 @@ public class CharRepository {
             public void onResponse(Call<List<Char>> call, Response<List<Char>> response) {
                 if (response.body() != null) {
                     for (Char wChar : response.body()) {
-                        if(targetChar.getName().equals(wChar.getName())){
+                        if (targetChar.getName().equals(wChar.getName())) {
                             selectedCharMutableLiveData.setValue(wChar);
-                            Log.i(TAG, "Selected Char: " + wChar.getCardId());
                         }
-                        Log.i(TAG, "CHAR: " + wChar.getName());
                     }
                 } else {
-                    Log.e(TAG, "Response is null URL:" + call.request().url());
+                    Log.e(TAG, "Response of  is null URL:" + call.request().url());
                 }
             }
 
@@ -99,38 +135,7 @@ public class CharRepository {
             }
         });
     }
-//    public void setSelectedCharMutableLiveData(final Char targetChar){
-//        selectedCharMutableLiveData.setValue(targetChar);
-//    }
-public MutableLiveData<List<Char>> getFilteredCharsMutableLiveData(String name) {
 
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-    CharService service = retrofit.create(CharService.class);
-    Call<List<Char>> call = service.getFilteredCharsByClass(name);
 
-    call.enqueue(new Callback<List<Char>>() {
-        @Override
-        public void onResponse(Call<List<Char>> call, Response<List<Char>> response) {
-            if (response.body() != null) {
-                for (Char wChar : response.body()) {
-                    Log.i(TAG, "CHAR: " + wChar.getName());
-                }
-            } else {
-                Log.e(TAG, "Response is null");
-            }
-            List<Char> chars = response.body();
-            charListMutableLiveData.setValue(chars);
-        }
-
-        @Override
-        public void onFailure(Call<List<Char>> call, Throwable t) {
-            Log.e(TAG, (t.getMessage() != null ? t.getMessage() : " onFailure"));
-        }
-    });
-    return charListMutableLiveData;
-}
 }
 
