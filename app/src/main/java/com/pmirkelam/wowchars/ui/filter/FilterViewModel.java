@@ -1,8 +1,8 @@
 package com.pmirkelam.wowchars.ui.filter;
 
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import androidx.databinding.BindingAdapter;
@@ -20,36 +20,40 @@ import static com.pmirkelam.wowchars.Constants.DEFAULT_NAME_TO_SEARCH;
 public class FilterViewModel extends ViewModel {
 
     private MutableLiveData<List<Char>> charMutableLiveData;
-    private MutableLiveData<String> filteredClass;
+    private MutableLiveData<Integer> classIndex;
     private CharRepository charRepository;
 
     public FilterViewModel() {
         charRepository = CharRepository.getInstance();
         charMutableLiveData = charRepository.getFilteredCharsMutableLiveData(DEFAULT_NAME_TO_SEARCH);
-        filteredClass = new MutableLiveData<>();
+        classIndex = new MutableLiveData<>();
     }
 
     public LiveData<List<Char>> filteredChars() {
         return charMutableLiveData;
     }
 
-    public MutableLiveData<String> getFilteredClass() {
-        return filteredClass;
+    public MutableLiveData<Integer> getClassIndex() {
+        return classIndex;
     }
 
     @BindingAdapter("onItemSelect")
     public void onItemSelected(Spinner spinner, int i){
-        spinner.onClick(new View.OnClickListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Log.i("FilterViewModel", "onItemSelected : " + i);
-                if(i!=0){
-                    charMutableLiveData = charRepository.getSearchedCharsMutableLiveData(String.valueOf(i);
-                }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("FilterViewModel", "onItemSelected : " + id);
+                classIndex.setValue((int) id);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.i("FilterViewModel", "onNothingSelected : ");
             }
         });
 
     }
+            //
 
     public void setSelectedChar(Char selectedChar){
         charRepository.setSelectedCharMutableLiveData(selectedChar);

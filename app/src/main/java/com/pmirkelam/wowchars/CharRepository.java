@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import retrofit2.Call;

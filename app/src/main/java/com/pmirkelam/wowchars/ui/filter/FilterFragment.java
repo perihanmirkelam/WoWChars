@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -24,10 +23,11 @@ public class FilterFragment extends Fragment {
                 ViewModelProviders.of(this).get(FilterViewModel.class);
         View root = inflater.inflate(R.layout.fragment_filter, container, false);
        // final TextView textView = root.findViewById(R.id.text_filter);
-        filterViewModel.getText().observe(this, new Observer<String>() {
+        filterViewModel.getClassIndex().observe(this, new Observer<Integer>() {
             @Override
-            public void onChanged(@Nullable String s) {
+            public void onChanged(@Nullable Integer i) {
            //     textView.setText(s);
+                getResources().getStringArray(R.array.classes)[i];
             }
         });
         return root;
