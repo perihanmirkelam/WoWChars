@@ -54,8 +54,8 @@ public class SearchViewModel extends ViewModel {
         });
     }
 
-    public void setSelectedChar(Char selectedChar){
-        charRepository.setSelectedCharMutableLiveData(selectedChar);
+    public void setClickedChar(Char clickedChar){
+        charRepository.setClickedCharMutableLiveData(clickedChar);
     }
 
 }

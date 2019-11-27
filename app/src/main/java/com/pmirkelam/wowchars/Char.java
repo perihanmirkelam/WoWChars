@@ -1,9 +1,7 @@
 package com.pmirkelam.wowchars;
 
-import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +27,7 @@ public class Char {
     @NonNull
     @Expose
     @SerializedName("playerClass")
-    private String playerClass; //TODO: check nonnull?
+    private String playerClass;
 
     @Expose
     @SerializedName("type")
@@ -164,6 +162,7 @@ public class Char {
     public void setImgGold(String imgGold) {
         this.imgGold = imgGold;
     }
+
     public String getCost() {
         return String.valueOf(cost);
     }
@@ -176,7 +175,6 @@ public class Char {
         if(text != null) {
             text = text.replace("\\n","<br />");
             return Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT);
-
         } else {
             return null;
         }

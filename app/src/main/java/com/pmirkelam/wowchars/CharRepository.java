@@ -104,16 +104,14 @@ public class CharRepository {
      * No needed this method actually, but asked to use the Detail API Call
      * @param targetChar already has char detail info.
      */
-    public void setSelectedCharMutableLiveData(final Char targetChar) {
-
-        String name = targetChar.getCardId();
+    public void setClickedCharMutableLiveData(final Char targetChar) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         CharService service = retrofit.create(CharService.class);
-        Call<List<Char>> call = service.getSelectedCharsByName(name);
+        Call<List<Char>> call = service.getClickedCharByID(targetChar.getCardId());
 
         call.enqueue(new Callback<List<Char>>() {
             @Override

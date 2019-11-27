@@ -65,7 +65,7 @@ public class FilterFragment extends Fragment {
         charAdapter.getSelectedCharName().observe(this, new Observer<Char>() {
             @Override
             public void onChanged(Char wChar) {
-                filterViewModel.setSelectedChar(wChar);
+                filterViewModel.setClickedChar(wChar);
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
                 startActivity(intent);
             }

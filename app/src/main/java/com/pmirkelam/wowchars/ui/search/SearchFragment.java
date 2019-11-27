@@ -64,7 +64,7 @@ public class SearchFragment extends Fragment {
         charAdapter.getSelectedCharName().observe(this, new Observer<Char>() {
             @Override
             public void onChanged(Char wChar) {
-                searchViewModel.setSelectedChar(wChar);
+                searchViewModel.setClickedChar(wChar);
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
                 startActivity(intent);
             }

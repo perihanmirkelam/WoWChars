@@ -38,6 +38,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.1.0"
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
+    testImplementation 'org.mockito:mockito-core:2.13.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
@@ -47,6 +49,7 @@ dependencies {
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.2.1")
 
     //dagger
     implementation "com.google.dagger:dagger:2.16"

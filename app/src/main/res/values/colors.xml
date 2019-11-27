@@ -3,4 +3,5 @@
     <color name="colorPrimary">#c0ccda</color>
     <color name="colorPrimaryDark">#7f8ea1</color>
     <color name="colorAccent">@android:color/holo_purple</color>
+    <color name="ic_launcher_background">#000000</color>
 </resources>
