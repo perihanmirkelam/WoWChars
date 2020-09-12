@@ -6,7 +6,7 @@ android:
     - build-tools-28.0.3
 
 before_install:
-    - echo yes | sdkmanager "build-tools;29.0.0"
+    - echo yes | sdkmanager "build-tools;28.0.3"
 
 script: TERM=dumb ./gradlew assembleDebug
 
