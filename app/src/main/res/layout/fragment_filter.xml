@@ -38,7 +38,6 @@
             android:layout_height="0dp"
             android:clickable="false"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/nav_view"
             app:layout_constraintTop_toBottomOf="@+id/filter_toolbar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
