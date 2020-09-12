@@ -1,10 +1,12 @@
-language: java
-jdk:
-  - openjdk8
-before_install:
-  - chmod +x gradlew
-  - chmod +x gradle/wrapper/gradle-wrapper.jar
-script:
-  - ./gradlew clean
-  - ./gradlew test
-  - ./gradlew assembleDebug
+language: android
+jdk: oraclejdk8
+
+android:
+  components:
+    - build-tools-29.0.0
+
+install:
+    - true
+
+script: TERM=dumb ./gradlew assembleDebug
+
