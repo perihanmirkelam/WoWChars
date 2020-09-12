@@ -1,5 +1,6 @@
 # WoWChars
-[![Coverage Status](https://coveralls.io/repos/github/perihanmirkelam/WoWChars/badge.svg?branch=master)](https://coveralls.io/github/perihanmirkelam/WoWChars?branch=master)
+
+[![Build Status](https://travis-ci.org/perihanmirkelam/WoWChars.svg?branch=master)](https://travis-ci.org/perihanmirkelam/WoWChars)
 
 List and show detailed description of WoW characters
 
