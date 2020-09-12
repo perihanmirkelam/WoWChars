@@ -6,5 +6,5 @@ before_install:
   - chmod +x gradle/wrapper/gradle-wrapper.jar
 script:
   - ./gradlew clean
-  - ./gradlew build test
-  - ./gradlew build assembleDebug
+  - ./gradlew test
+  - ./gradlew assembleDebug
